@@ -6,9 +6,9 @@ public class Main {
 		
 		int [] numbers = {1,12,17,13,61,21,32,23,45,67,123,5,42,90,89};
 		intSet s = new intSet(numbers);
-		int [] n = {1,12,1000};
+		int [] n = {1,12,999};
 		intSet s2 = new intSet(n);
-		System.out.println(s.isMember(123));
+		System.out.println(s.union(s,s2).toString());
 		
 	}
 }
