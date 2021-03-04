@@ -1,10 +1,21 @@
 package linkedList;
 
+/**
+ * Class to create Linked List
+ * 
+ * @author krishna.meghwal_meta
+ * @created-on 04-03-2021
+ */
 public class LinkedList {
 	Node head = null;
 	Node tail = null;
 	int size = 0;
 
+	/**
+	 * Method to add a node to linked list
+	 * 
+	 * @param int
+	 */
 	public void addNode(int value) {
 		Node newNode = new Node(value);
 		if (head == null && tail == null) {
@@ -24,6 +35,9 @@ public class LinkedList {
 				+ "]";
 	}
 
+	/**
+	 * Method to print linked list
+	 * */
 	public void printList() {
 		Node curNode = this.head;
 		String answer = "";
@@ -37,6 +51,12 @@ public class LinkedList {
 		System.out.println(answer);
 	}
 
+	/**
+	 * Method that returns nth node of linked list
+	 * 
+	 * @param n
+	 * @return Node
+	 */
 	public Node nthNode(int n) {
 		if (n > size || size == 0)
 			return null;
@@ -52,6 +72,14 @@ public class LinkedList {
 		return curNode;
 	}
 
+	/**
+	 * Method to rotate a sub-list of a linked list
+	 * 
+	 * @param int
+	 * @param int
+	 * @param int
+	 * @return Node
+	 */
 	public Node rotate(int l, int r, int n) {
 
 		Node curNode = this.head;
@@ -99,6 +127,11 @@ public class LinkedList {
 		return head;
 	}
 
+	/**
+	 * Method to detect loop in linked list
+	 * 
+	 * @return boolean
+	 */
 	public boolean detectLoop() {
 
 		Node slow_p = this.head, fast_p = this.head;
@@ -112,6 +145,5 @@ public class LinkedList {
 		}
 		return false;
 	}
-
 
 }
