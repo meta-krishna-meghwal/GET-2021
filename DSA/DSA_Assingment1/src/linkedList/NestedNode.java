@@ -6,10 +6,10 @@ package linkedList;
  * @author krishna.meghwal_meta
  * @created-on 04-03-2021
  */
-public class nestedNode {
+public class NestedNode {
 	LinkedList list = null;
 	int coefficient;
-	nestedNode next;
+	NestedNode next;
 
 	/**
 	 * Method to add node to lisnked list

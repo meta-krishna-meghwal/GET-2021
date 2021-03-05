@@ -6,12 +6,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 /** @author krishna.meghwal_meta */
-public class nestedLinkedListTest {
-	nestedLinkedList list;
+public class NestedLinkedListTest {
+	NestedLinkedList list;
 
 	@Before
 	public void before() {
-		list = new nestedLinkedList();
+		list = new NestedLinkedList();
 
 		int powers1[] = { 1, 2, 3 };
 		list.addTerm(10, powers1);

@@ -6,8 +6,8 @@ package linkedList;
  * @author krishna.meghwal_meta
  * @created-on 04-03-2021
  */
-public class nestedLinkedList {
-	nestedNode head = null;
+public class NestedLinkedList {
+	NestedNode head = null;
 	int size = 0;
 
 	/**
@@ -15,19 +15,19 @@ public class nestedLinkedList {
 	 * 
 	 * @return nestedNode
 	 */
-	public nestedNode addNestedNode() {
+	public NestedNode addNestedNode() {
 		if (head == null) {
-			head = new nestedNode();
+			head = new NestedNode();
 			size++;
 			return head;
 		}
 
-		nestedNode curNode = head;
+		NestedNode curNode = head;
 		while (curNode != null) {
 			curNode = curNode.next;
 		}
 
-		curNode = new nestedNode();
+		curNode = new NestedNode();
 		size++;
 		return curNode;
 
@@ -40,7 +40,7 @@ public class nestedLinkedList {
 	 * @param int[] powers: array of powers of variables
 	 */
 	public void addTerm(int coefficient, int[] powers) {
-		nestedNode node = addNestedNode();
+		NestedNode node = addNestedNode();
 		node.addCoefficient(10);
 		for (int i : powers) {
 			node.addNode(i);
@@ -58,7 +58,7 @@ public class nestedLinkedList {
 
 		if (head != null) {
 
-			nestedNode curNestedNode = head;
+			NestedNode curNestedNode = head;
 
 			while (curNestedNode != null) {
 				int sum = 0;
