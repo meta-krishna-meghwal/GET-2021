@@ -24,7 +24,7 @@ public class ScreenTest {
 		sc = new Screen();
 		Point p1 = new Point(100, 100);
 		Point p2 = new Point(200, 100);
-		Point p3 = new Point(200, 100);
+		Point p3 = new Point(300, 100);
 		List<Integer> param = new ArrayList<Integer>();
 		List<Integer> param2 = new ArrayList<Integer>();
 		param.add(5);

@@ -56,11 +56,11 @@ public class Polygon extends shapeFactory {
 	 * @param Point
 	 * @return boolean
 	 */
-	private static boolean onSegment(Point p, Point q, Point r) {
-		if (q.xCoordinate <= Math.max(p.xCoordinate, r.xCoordinate)
-				&& q.xCoordinate >= Math.min(p.xCoordinate, r.xCoordinate)
-				&& q.yCoordinate <= Math.max(p.yCoordinate, r.yCoordinate)
-				&& q.yCoordinate >= Math.min(p.yCoordinate, r.yCoordinate)) {
+	private static boolean onSegment(Point edgePoint1, Point p, Point edgePoint2) {
+		if (p.xCoordinate <= Math.max(edgePoint1.xCoordinate, edgePoint2.xCoordinate)
+				&& p.xCoordinate >= Math.min(edgePoint1.xCoordinate, edgePoint2.xCoordinate)
+				&& p.yCoordinate <= Math.max(edgePoint1.yCoordinate, edgePoint2.yCoordinate)
+				&& p.yCoordinate >= Math.min(edgePoint1.yCoordinate, edgePoint2.yCoordinate)) {
 			return true;
 		}
 		return false;
@@ -88,7 +88,8 @@ public class Polygon extends shapeFactory {
 	}
 
 	/**
-	 * Method returns true if line segment 'p1q1' and 'p2q2' intersect
+	 * Method returns true if line segment (edgePoint1,edgePoint2) and
+	 * (p,extreme) intersect
 	 * 
 	 * @param Point
 	 * @param Point
@@ -97,30 +98,31 @@ public class Polygon extends shapeFactory {
 	 * @param Point
 	 * @return boolean
 	 */
-	static boolean doIntersect(Point p1, Point q1, Point p2, Point q2) {
+	static boolean doIntersect(Point edgePoint1, Point edgePoint2, Point p,
+			Point extreme) {
 
-		int orientation1 = orientation(p1, q1, p2);
-		int orientation2 = orientation(p1, q1, q2);
-		int orientation3 = orientation(p2, q2, p1);
-		int orientation4 = orientation(p2, q2, q1);
+		int orientation1 = orientation(edgePoint1, edgePoint2, p);
+		int orientation2 = orientation(edgePoint1, edgePoint2, extreme);
+		int orientation3 = orientation(p, extreme, edgePoint1);
+		int orientation4 = orientation(p, extreme, edgePoint2);
 
 		if (orientation1 != orientation2 && orientation3 != orientation4) {
 			return true;
 		}
 
-		if (orientation1 == 0 && onSegment(p1, p2, q1)) {
+		if (orientation1 == 0 && onSegment(edgePoint1, p, edgePoint2)) {
 			return true;
 		}
 
-		if (orientation2 == 0 && onSegment(p1, q2, q1)) {
+		if (orientation2 == 0 && onSegment(edgePoint1, extreme, edgePoint2)) {
 			return true;
 		}
 
-		if (orientation3 == 0 && onSegment(p2, p1, q2)) {
+		if (orientation3 == 0 && onSegment(p, edgePoint1, extreme)) {
 			return true;
 		}
 
-		if (orientation4 == 0 && onSegment(p2, q1, q2)) {
+		if (orientation4 == 0 && onSegment(p, edgePoint2, extreme)) {
 			return true;
 		}
 
@@ -157,7 +159,7 @@ public class Polygon extends shapeFactory {
 		List<Point> polygon = getCoordinatesList();
 		Point extreme = new Point(INF, p.yCoordinate);
 
-		int count = 0, i = 0;
+		int intersectCount = 0, i = 0;
 		do {
 			int next = (i + 1) % this.size;
 
@@ -167,12 +169,12 @@ public class Polygon extends shapeFactory {
 					return onSegment(polygon.get(i), p, polygon.get(next));
 				}
 
-				count++;
+				intersectCount++;
 			}
 			i = next;
 		} while (i != 0);
 
-		return (count % 2 == 1);
+		return (intersectCount % 2 == 1);
 
 	}
 
