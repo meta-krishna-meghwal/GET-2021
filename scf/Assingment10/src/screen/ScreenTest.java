@@ -13,7 +13,8 @@ import shape.Point;
 import shape.Shape;
 import shape.shapeFactory;
 import shape.Shape.ShapeType;
-/**@author krishna.meghwal_meta*/
+
+/** @author krishna.meghwal_meta */
 public class ScreenTest {
 
 	Screen sc;
@@ -99,6 +100,26 @@ public class ScreenTest {
 		for (int i = 0; i < objects.size() - 1; i++) {
 			boolean isTrue = objects.get(i).originDistance() <= objects.get(
 					i + 1).originDistance();
+
+			assertTrue(isTrue);
+
+		}
+
+	}
+
+	@Test
+	public void sortAscendingTestTimestamp() {
+		SortType type = SortType.TIMESTAMP;
+
+		List<Shape> objects = sc.sortAscending(type);
+		for (int i = 0; i < objects.size() - 1; i++) {
+			int temp = objects.get(i).getTimestamp()
+					.compareTo(objects.get(i + 1).getTimestamp());
+			boolean isTrue;
+			if (temp == 0 || temp < 0)
+				isTrue = true;
+			else
+				isTrue = false;
 
 			assertTrue(isTrue);
 
