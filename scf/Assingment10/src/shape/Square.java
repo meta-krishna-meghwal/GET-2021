@@ -9,9 +9,13 @@ import java.sql.Timestamp;
  * @author krishna.meghwal_meta
  */
 
-public class Square extends shapeFactory {
+public class Square implements Shape {
 	int side;
 	Point topRight;
+	Point origin;
+	int shapeId;
+	Timestamp timestamp;
+	ShapeType type;
 
 	public Square(ShapeType type, Point p, Integer side) {
 		this.timestamp = new Timestamp(System.currentTimeMillis());
@@ -58,6 +62,52 @@ public class Square extends shapeFactory {
 			return true;
 
 		return false;
+	}
+
+	/**
+	 * Method to the origin point
+	 * 
+	 * @return Point
+	 */
+	public Point getOrigin() {
+		return this.origin;
+	}
+
+	/**
+	 * Method to get the Id of the shape
+	 * 
+	 * @return int
+	 */
+	public int getShapeID() {
+		return this.shapeId;
+	}
+
+	/**
+	 * Method that returns ShapeType of shape
+	 * 
+	 * @return ShapeType
+	 */
+	public ShapeType getShapeType() {
+		return this.type;
+	}
+
+	/**
+	 * Method that returns distance of origin point from (0,0)
+	 * 
+	 * @return double
+	 */
+	public double originDistance() {
+		return Math.sqrt(Math.pow(origin.xCoordinate, 2)
+				+ Math.pow(origin.yCoordinate, 2));
+	}
+
+	/**
+	 * Method for getting timestamp when the shape was created
+	 * 
+	 * @return Timestamp
+	 */
+	public Timestamp getTimestamp() {
+		return this.timestamp;
 	}
 
 }

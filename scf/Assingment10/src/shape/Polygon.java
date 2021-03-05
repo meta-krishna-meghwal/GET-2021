@@ -10,10 +10,14 @@ import java.util.List;
  * @created-on 02-03-2021
  * @author krishna.meghwal_meta
  */
-public class Polygon extends shapeFactory {
+public class Polygon implements Shape {
 	int side, size;
 	double angle, height;
 	static int INF = 10000;
+	Point origin;
+	int shapeId;
+	Timestamp timestamp;
+	ShapeType type;
 
 	public Polygon(ShapeType type, Point p, int size, int side) {
 		this.timestamp = new Timestamp(System.currentTimeMillis());
@@ -57,10 +61,14 @@ public class Polygon extends shapeFactory {
 	 * @return boolean
 	 */
 	private static boolean onSegment(Point edgePoint1, Point p, Point edgePoint2) {
-		if (p.xCoordinate <= Math.max(edgePoint1.xCoordinate, edgePoint2.xCoordinate)
-				&& p.xCoordinate >= Math.min(edgePoint1.xCoordinate, edgePoint2.xCoordinate)
-				&& p.yCoordinate <= Math.max(edgePoint1.yCoordinate, edgePoint2.yCoordinate)
-				&& p.yCoordinate >= Math.min(edgePoint1.yCoordinate, edgePoint2.yCoordinate)) {
+		if (p.xCoordinate <= Math.max(edgePoint1.xCoordinate,
+				edgePoint2.xCoordinate)
+				&& p.xCoordinate >= Math.min(edgePoint1.xCoordinate,
+						edgePoint2.xCoordinate)
+				&& p.yCoordinate <= Math.max(edgePoint1.yCoordinate,
+						edgePoint2.yCoordinate)
+				&& p.yCoordinate >= Math.min(edgePoint1.yCoordinate,
+						edgePoint2.yCoordinate)) {
 			return true;
 		}
 		return false;
@@ -176,6 +184,52 @@ public class Polygon extends shapeFactory {
 
 		return (intersectCount % 2 == 1);
 
+	}
+
+	/**
+	 * Method to the origin point
+	 * 
+	 * @return Point
+	 */
+	public Point getOrigin() {
+		return this.origin;
+	}
+
+	/**
+	 * Method to get the Id of the shape
+	 * 
+	 * @return int
+	 */
+	public int getShapeID() {
+		return this.shapeId;
+	}
+
+	/**
+	 * Method that returns ShapeType of shape
+	 * 
+	 * @return ShapeType
+	 */
+	public ShapeType getShapeType() {
+		return this.type;
+	}
+
+	/**
+	 * Method that returns distance of origin point from (0,0)
+	 * 
+	 * @return double
+	 */
+	public double originDistance() {
+		return Math.sqrt(Math.pow(origin.xCoordinate, 2)
+				+ Math.pow(origin.yCoordinate, 2));
+	}
+
+	/**
+	 * Method for getting timestamp when the shape was created
+	 * 
+	 * @return Timestamp
+	 */
+	public Timestamp getTimestamp() {
+		return this.timestamp;
 	}
 
 }

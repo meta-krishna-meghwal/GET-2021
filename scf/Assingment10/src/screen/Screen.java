@@ -71,12 +71,11 @@ public class Screen {
 	 */
 	public boolean removeSpecificType(ShapeType type) {
 
-		int count = 0;
 		for (int i = 0; i < objects.size();) {
 			Shape s = objects.get(i);
 			if (s.getShapeType() == type) {
 				objects.remove(i);
-				count++;
+
 			} else {
 				i++;
 			}

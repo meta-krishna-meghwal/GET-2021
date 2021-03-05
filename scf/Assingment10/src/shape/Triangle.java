@@ -9,9 +9,13 @@ import java.sql.Timestamp;
  * @author krishna.meghwal_meta
  */
 
-public class Triangle extends shapeFactory {
+public class Triangle implements Shape {
 	int base, height;
 	Point secondPoint, thirdPoint;
+	Point origin;
+	int shapeId;
+	Timestamp timestamp;
+	ShapeType type;
 
 	public Triangle(ShapeType type, Point p, Integer base, Integer height) {
 		this.timestamp = new Timestamp(System.currentTimeMillis());
@@ -74,5 +78,51 @@ public class Triangle extends shapeFactory {
 				* (p2.yCoordinate - p3.yCoordinate)
 				- (p2.xCoordinate - p3.xCoordinate)
 				* (p1.yCoordinate - p3.yCoordinate);
+	}
+
+	/**
+	 * Method to the origin point
+	 * 
+	 * @return Point
+	 */
+	public Point getOrigin() {
+		return this.origin;
+	}
+
+	/**
+	 * Method to get the Id of the shape
+	 * 
+	 * @return int
+	 */
+	public int getShapeID() {
+		return this.shapeId;
+	}
+
+	/**
+	 * Method that returns ShapeType of shape
+	 * 
+	 * @return ShapeType
+	 */
+	public ShapeType getShapeType() {
+		return this.type;
+	}
+
+	/**
+	 * Method that returns distance of origin point from (0,0)
+	 * 
+	 * @return double
+	 */
+	public double originDistance() {
+		return Math.sqrt(Math.pow(origin.xCoordinate, 2)
+				+ Math.pow(origin.yCoordinate, 2));
+	}
+
+	/**
+	 * Method for getting timestamp when the shape was created
+	 * 
+	 * @return Timestamp
+	 */
+	public Timestamp getTimestamp() {
+		return this.timestamp;
 	}
 }
