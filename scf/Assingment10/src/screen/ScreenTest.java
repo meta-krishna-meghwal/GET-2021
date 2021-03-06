@@ -21,10 +21,10 @@ public class ScreenTest {
 
 	@Before
 	public void before() {
-		sc = new Screen();
-		Point p1 = new Point(100, 100);
-		Point p2 = new Point(200, 100);
-		Point p3 = new Point(300, 100);
+		sc = new Screen(720, 1280);
+		Point p1 = new Point(300, 100);
+		Point p2 = new Point(200, 600);
+		Point p3 = new Point(100, 100);
 		List<Integer> param = new ArrayList<Integer>();
 		List<Integer> param2 = new ArrayList<Integer>();
 		param.add(5);
@@ -54,12 +54,6 @@ public class ScreenTest {
 		Shape polygon = shapeFactory.createShape(type, p1, param);
 		assertTrue(sc.addObject(polygon));
 		assertTrue(sc.removeObject(polygon));
-	}
-
-	@Test
-	public void isEnclosedTestPositive() {
-		Point p = new Point(100, 100);
-		assertEquals(1, sc.isEnclosed(p).size());
 	}
 
 	@Test
@@ -130,6 +124,16 @@ public class ScreenTest {
 	@Test
 	public void removeSpecificType() {
 		ShapeType type = ShapeType.POLYGON;
-		assertTrue(sc.removeSpecificType(type));
+		assertEquals(9, sc.removeSpecificType(type));
+	}
+
+	@Test
+	public void isEnclosedTest() {
+		Point p = new Point(100, 100);
+
+		List<Shape> objects = sc.isEnclosed(p);
+		for (Shape s : objects) {
+			assertTrue(s.isPointEnclosed(p));
+		}
 	}
 }

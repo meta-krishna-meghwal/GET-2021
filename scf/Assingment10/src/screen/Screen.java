@@ -14,8 +14,13 @@ import shape.Shape.ShapeType;
  */
 public class Screen {
 
-	double XMAX = 720, YMAX = 1280;
+	double XMAX, YMAX;
 	private static List<Shape> objects = new ArrayList<Shape>();
+
+	public Screen(double x, double y) {
+		XMAX = x;
+		YMAX = y;
+	}
 
 	public enum SortType {
 		AREA, PERIMETER, TIMESTAMP, ORIGIN_DISTANCE
@@ -69,19 +74,19 @@ public class Screen {
 	 * 
 	 * @return int
 	 */
-	public boolean removeSpecificType(ShapeType type) {
-
+	public int removeSpecificType(ShapeType type) {
+		int count = 0;
 		for (int i = 0; i < objects.size();) {
 			Shape s = objects.get(i);
 			if (s.getShapeType() == type) {
 				objects.remove(i);
-
+				count++;
 			} else {
 				i++;
 			}
 
 		}
-		return true;
+		return count;
 	}
 
 	/**

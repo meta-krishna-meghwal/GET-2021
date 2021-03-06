@@ -14,18 +14,8 @@ public interface Shape {
 		CIRCLE, TRIANGLE, SQUARE, RECTANGLE, POLYGON
 	}
 
-	/**
-	 * Method that returns area of the shape
-	 * 
-	 * @return double
-	 */
 	double getArea();
 
-	/**
-	 * Method that returns perimeter of the shape
-	 * 
-	 * @return double
-	 */
 	double getPerimeter();
 
 	ShapeType getShapeType();
@@ -34,12 +24,6 @@ public interface Shape {
 
 	double originDistance();
 
-	/**
-	 * Method that check if a point is inside the shape
-	 * 
-	 * @param Point
-	 * @return boolean
-	 */
 	boolean isPointEnclosed(Point p);
 
 	Timestamp getTimestamp();
