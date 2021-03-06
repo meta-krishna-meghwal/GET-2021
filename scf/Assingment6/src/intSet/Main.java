@@ -1,5 +1,7 @@
 package intSet;
 
+import java.util.Arrays;
+
 public class Main {
 
 	public static void main(String[] args){
@@ -8,7 +10,7 @@ public class Main {
 		intSet s = new intSet(numbers);
 		int [] n = {1,12,999};
 		intSet s2 = new intSet(n);
-		System.out.println(s.union(s,s2).toString());
+		System.out.println(Arrays.toString(s.union(s,s2).getNumbers()));
 		
 	}
 }

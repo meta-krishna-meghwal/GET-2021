@@ -1,11 +1,5 @@
 package intSet;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 /**
  * Class to perform operation on set of numbers in range 1-1000
  * 
@@ -15,35 +9,6 @@ import java.util.Set;
 public final class intSet {
 	private final int[] setOfNumbers = new int[1000];
 	private final int size;
-
-	/**
-	 * Method to convert int to Integer
-	 * 
-	 * @param int []
-	 * @return List<Integer>
-	 */
-	private static List<Integer> toConvertInteger(int[] ids) {
-		List<Integer> newArray = new ArrayList<Integer>();
-		for (int index = 0; index < ids.length; index++) {
-			newArray.add(Integer.valueOf(ids[index]));
-		}
-		return newArray;
-	}
-
-	/**
-	 * Method to convert Integer to int
-	 * 
-	 * @param Integer
-	 *            []
-	 * @return int[]
-	 */
-	private static int[] toInt(Integer[] WrapperArray) {
-		int[] newArray = new int[WrapperArray.length];
-		for (int index = 0; index < WrapperArray.length; index++) {
-			newArray[index] = WrapperArray[index].intValue();
-		}
-		return newArray;
-	}
 
 	public intSet(int[] setElements) {
 		for (int number : setElements) {
@@ -91,12 +56,11 @@ public final class intSet {
 		return answer;
 	}
 
-	@Override
-	public String toString() {
-		return "intSet [setOfNumbers=" + Arrays.toString(setOfNumbers)
-				+ ", size=" + size + "]";
-	}
-
+	/**
+	 * Method to check for subset
+	 * 
+	 * @return boolean
+	 */
 	public boolean isSubSet(intSet s) {
 		boolean answer = true;
 		int[] values = s.getNumbers();
@@ -131,37 +95,25 @@ public final class intSet {
 	 * Method to get union numbers
 	 * 
 	 * @param intSet
-	 *            intSet
+	 * @param intSet
 	 * @return intSet
 	 */
 	public intSet union(intSet s1, intSet s2) {
 
-		List<Integer> numbers1 = toConvertInteger(s1.getNumbers());
-		List<Integer> numbers2 = toConvertInteger(s2.getNumbers());
-
-		Set<Integer> unionOfArrays = new HashSet<>();
-		
-		for(int index=0; index < numbers1.size(); index++){
-			unionOfArrays.add(numbers1.get(index));
-		}
-		
-		for(int index=0; index < numbers2.size(); index++){
-			unionOfArrays.add(numbers2.get(index));
-		}
-		
-		Integer[] unionArray = new Integer[unionOfArrays.size()];
+		int[] setTempValues = new int[s1.size + s2.size];
 		int index = 0;
-		for(Integer number : unionOfArrays){
-			unionArray[index++] = number;
+		for (int i = 0; i < 1000; i++) {
+			if (s1.setOfNumbers[i] == 1 || s2.setOfNumbers[i] == 1) {
+				setTempValues[index++] = i + 1;
+			}
 		}
-		
-		int[] numbers = toInt(unionArray);
-		intSet s = new intSet(numbers);
+		int[] setValues = new int[index];
+		for (int i = 0; i < index; i++) {
+			setValues[i] = setTempValues[i];
+		}
 
-		return s;
+		return new intSet(setValues);
 
 	}
-
-
 
 }
