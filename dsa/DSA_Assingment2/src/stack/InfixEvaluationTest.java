@@ -9,8 +9,8 @@ public class InfixEvaluationTest {
 	@Test
 	public void booleanTest() {
 		try {
-			String s = "( 36 / 2 + 45 * 5 == 1 )";
-			String answer = "false";
+			String s = "( 36 / 2 + 45 * 5 <= 1  * 500)";
+			String answer = "true";
 			assertEquals(answer, InfixEvaluation.evalute(s));
 		} catch (Exception e) {
 			System.out.println(e);

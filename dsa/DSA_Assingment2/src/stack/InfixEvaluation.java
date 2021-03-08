@@ -44,10 +44,10 @@ public class InfixEvaluation implements Stack {
 
 	private static boolean isBooleanOperator(String operator) {
 		if (operator.equals("<") || operator.equals(">")
-				|| operator.equals("=") || operator.equals("==")
-				|| operator.equals("||") || operator.equals("!")
-				|| operator.equals("!=") || operator.equals("&&")
-				|| operator.equals(">=") || operator.equals("<=")) {
+				|| operator.equals("==") || operator.equals("||")
+				|| operator.equals("!") || operator.equals("!=")
+				|| operator.equals("&&") || operator.equals(">=")
+				|| operator.equals("<=")) {
 			return true;
 		}
 		return false;
@@ -128,8 +128,7 @@ public class InfixEvaluation implements Stack {
 		} else if (op1.equals("<") || op1.equals(">") || op1.equals(">=")
 				|| op1.equals("<=")) {
 			if (operator.equals("==") || operator.equals("!=")
-					|| operator.equals("&&") || operator.equals("||")
-					|| operator.equals("=")) {
+					|| operator.equals("&&") || operator.equals("||")) {
 				return 2;
 			} else if (operator.equals("<") || operator.equals(">")
 					|| operator.equals(">=") || operator.equals("<=")) {
@@ -143,14 +142,9 @@ public class InfixEvaluation implements Stack {
 				return 1;
 			}
 		} else if (op1.equals("&&") || op1.equals("||")) {
-			if (operator.equals("=")) {
-				return 2;
-			} else if (operator.equals("&&") || operator.equals("||"))
+			if (operator.equals("&&") || operator.equals("||"))
 				return 1;
-		} else if (op1.equals("=")) {
-			if (operator.equals("=")) {
-				return 1;
-			}
+
 		}
 
 		return 0;
@@ -177,8 +171,7 @@ public class InfixEvaluation implements Stack {
 				return String.valueOf(opB1 || opB2);
 			else if (operator.equals("&&"))
 				return String.valueOf(opB1 && opB2);
-		} 
-		else {
+		} else {
 
 			op1 = Integer.parseInt(operand1);
 			op2 = Integer.parseInt(operand2);
@@ -188,9 +181,6 @@ public class InfixEvaluation implements Stack {
 
 			else if (operator.equals(">"))
 				return String.valueOf(op1 > op2);
-
-			else if (operator.equals("="))
-				return String.valueOf(op1 = op2);
 
 			else if (operator.equals("<="))
 				return String.valueOf(op1 <= op2);
@@ -204,8 +194,6 @@ public class InfixEvaluation implements Stack {
 			else if (operator.equals("=="))
 				return String.valueOf(op1 == op2);
 
-			else
-				throw new UnsupportedOperationException();
 		}
 		throw new UnsupportedOperationException();
 	}
