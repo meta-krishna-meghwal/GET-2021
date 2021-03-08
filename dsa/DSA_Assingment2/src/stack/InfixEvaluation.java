@@ -284,7 +284,9 @@ public class InfixEvaluation implements Stack {
 
 				operatorStack.pop();
 
-			} else {
+			} else if (token == " ")
+				continue;
+			else {
 				throw new UnsupportedOperationException();
 			}
 
@@ -307,5 +309,4 @@ public class InfixEvaluation implements Stack {
 		}
 		return operandStack.pop();
 	}
-
 }
