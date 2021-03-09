@@ -1,5 +1,11 @@
 package queue;
 
+/**
+ * Class that implements Queue
+ * 
+ * @created-on 08-03-2021
+ * @author krishna.meghwal_meta
+ * */
 public class CustomQueue implements Queue {
 	int[] queue;
 	int size = 0;
@@ -12,6 +18,12 @@ public class CustomQueue implements Queue {
 
 	}
 
+	/**
+	 * Method to enqueue an element into queue
+	 * 
+	 * @param int
+	 * @return boolean
+	 */
 	@Override
 	public boolean enQueue(int x) {
 		if (isFull()) {
@@ -20,7 +32,7 @@ public class CustomQueue implements Queue {
 			front = 0;
 			rear = 0;
 			queue[rear] = x;
-		} else if (rear == size - 1 && front != 0) {
+		} else if (rear == capacity - 1 && front != 0) {
 			rear = 0;
 			queue[rear] = x;
 		} else {
@@ -31,6 +43,12 @@ public class CustomQueue implements Queue {
 		return true;
 	}
 
+	/**
+	 * Method to dequeue an element from queue
+	 * 
+	 * 
+	 * @return int
+	 */
 	@Override
 	public int deQueue() {
 		int temp;
@@ -46,7 +64,7 @@ public class CustomQueue implements Queue {
 			rear = -1;
 		}
 
-		else if (front == size - 1) {
+		else if (front == capacity - 1) {
 			front = 0;
 		} else {
 			front = front + 1;
@@ -55,6 +73,12 @@ public class CustomQueue implements Queue {
 		return temp;
 	}
 
+	/**
+	 * Method to check if queue is empty
+	 * 
+	 * 
+	 * @return boolean
+	 */
 	@Override
 	public boolean isEmpty() {
 		if (front == -1) {
@@ -63,9 +87,15 @@ public class CustomQueue implements Queue {
 		return false;
 	}
 
+	/**
+	 * Method to check if queue is full
+	 * 
+	 * 
+	 * @return boolean
+	 */
 	@Override
 	public boolean isFull() {
-		if (rear == front - 1 || rear == size - 1 && front == 0) {
+		if (rear == front - 1 || rear == capacity - 1 && front == 0) {
 			return true;
 		}
 		return false;

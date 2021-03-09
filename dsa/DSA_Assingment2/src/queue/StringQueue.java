@@ -6,14 +6,12 @@ package queue;
  * @created-on 08-03-2021
  * @author krishna.meghwal_meta
  * */
-public interface Queue {
+public interface StringQueue {
+	boolean enQueue(String s);
 
-	boolean enQueue(int x);
-
-	int deQueue();
+	String deQueue();
 
 	boolean isEmpty();
 
 	boolean isFull();
-
 }
