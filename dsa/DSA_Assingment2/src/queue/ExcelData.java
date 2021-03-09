@@ -21,8 +21,9 @@ public class ExcelData {
 	/**
 	 * Method to add headers to excel data
 	 * 
-	 * @param String[]
-	 *            
+	 * @param String
+	 *            []
+	 * 
 	 */
 	public void addHeaders(String[] headers) {
 		this.headers = headers;
@@ -31,8 +32,9 @@ public class ExcelData {
 	/**
 	 * Method to add row to excel data
 	 * 
-	 * @param String[]
-	 *            
+	 * @param String
+	 *            []
+	 * 
 	 */
 	public boolean addRow(String[] rowData) {
 		if (currentRow < row) {

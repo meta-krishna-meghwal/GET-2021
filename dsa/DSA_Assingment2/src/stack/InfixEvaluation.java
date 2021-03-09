@@ -1,5 +1,7 @@
 package stack;
 
+import java.util.Scanner;
+
 public class InfixEvaluation implements Stack {
 	public String[] list;
 	int size = 0;
@@ -74,15 +76,17 @@ public class InfixEvaluation implements Stack {
 		return true;
 	}
 
-	// public static boolean isVariable(String operand){
-	// for (int i = 0; i < operand.length(); i++) {
-	// char c = operand.charAt(i);
-	// if (c >= 'a' && c <= 'z' || c >= 'A'
-	// && c <= 'Z'){
-	// continue;
-	// }
-	// }
-	// }
+	public static boolean isVariable(String operand) {
+		for (int i = 0; i < operand.length(); i++) {
+			char c = operand.charAt(i);
+			if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z') {
+				continue;
+			} else
+				return false;
+
+		}
+		return true;
+	}
 
 	public static int arithmeticPrecedence(String operatorAtPeek, String current) {
 		if (operatorAtPeek.equals("+") || operatorAtPeek.equals("-")) {
@@ -100,8 +104,23 @@ public class InfixEvaluation implements Stack {
 
 	}
 
+	public static String getValueOfVariable(String operand) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the value of " + operand + " : ");
+		operand = sc.next();
+		sc.close();
+		return operand;
+	}
+
 	private static String solveArithemetic(String operator, String operand1,
 			String operand2) {
+		if (isVariable(operand2)) {
+			operand2 = getValueOfVariable(operand2);
+		}
+
+		if (isVariable(operand1)) {
+			operand1 = getValueOfVariable(operand1);
+		}
 
 		if (!operand1.equals("true") && !operand1.equals("false")
 				&& !operand2.equals("true") && !operand2.equals("false")) {
@@ -152,6 +171,13 @@ public class InfixEvaluation implements Stack {
 
 	private static String solveBoolean(String operator, String operand1,
 			String operand2) throws Exception {
+		if (isVariable(operand2)) {
+			operand2 = getValueOfVariable(operand2);
+		}
+
+		if (isVariable(operand1)) {
+			operand1 = getValueOfVariable(operand1);
+		}
 		int op1 = 0, op2 = 0;
 		boolean opB1, opB2;
 		if (operand1.equals("true") || operand1.equals("false")
@@ -254,7 +280,7 @@ public class InfixEvaluation implements Stack {
 				}
 				operatorStack.push(token);
 
-			} else if (isConstant(token)) {
+			} else if (isConstant(token) || isVariable(token)) {
 
 				operandStack.push(token);
 
@@ -299,11 +325,9 @@ public class InfixEvaluation implements Stack {
 			String operand2 = operandStack.pop();
 			if (isArithmeticOperator(operator)) {
 				String ans = solveArithemetic(operator, operand2, operand1);
-
 				operandStack.push(ans);
 			} else if (isBooleanOperator(operator)) {
 				String ans = solveBoolean(operator, operand2, operand1);
-
 				operandStack.push(ans);
 			}
 		}

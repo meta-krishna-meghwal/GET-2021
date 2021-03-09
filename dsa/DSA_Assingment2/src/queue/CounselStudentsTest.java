@@ -28,21 +28,27 @@ public class CounselStudentsTest {
 
 		for (int i = 1; i <= 300; i++) {
 			String[] row = {
-					"Name" + String.valueOf(i),			
-					"IT" + String.valueOf((i + Math.round(Math.random()) * 10) % 11),
-					"IT" + String.valueOf((i + Math.round(Math.random()) * 10) % 11),
-					"IT" + String.valueOf((i + Math.round(Math.random()) * 10) % 11),
-					"IT" + String.valueOf((i + Math.round(Math.random()) * 10) % 11),
-					"IT" + String.valueOf((i + Math.round(Math.random()) * 10) % 11) };
+					"Name" + String.valueOf(i),
+					"IT"
+							+ String.valueOf((i + Math.round(Math.random()) * 10) % 11),
+					"IT"
+							+ String.valueOf((i + Math.round(Math.random()) * 10) % 11),
+					"IT"
+							+ String.valueOf((i + Math.round(Math.random()) * 10) % 11),
+					"IT"
+							+ String.valueOf((i + Math.round(Math.random()) * 10) % 11),
+					"IT"
+							+ String.valueOf((i + Math.round(Math.random()) * 10) % 11) };
 			students.addRow(row);
 		}
 
 		CounselStudents.createExcelFile("programs.xlsx", programs);
 		CounselStudents.createExcelFile("students.xlsx", students);
 	}
+
 	@Test
 	public void FileCreationTest() throws Exception {
-		CounselStudents.Processing(300);
+		assertTrue(CounselStudents.Processing(300));
 	}
 
 }
