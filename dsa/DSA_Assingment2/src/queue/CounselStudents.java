@@ -51,7 +51,6 @@ public class CounselStudents implements StringQueue {
 			Row row = sheet.createRow(r);
 			for (int c = 0; c < excelData.col; c++) {
 				row.createCell(c).setCellValue(excelData.data[r - 1][c]);
-
 			}
 		}
 
@@ -92,7 +91,7 @@ public class CounselStudents implements StringQueue {
 	 * 
 	 * @param int
 	 * */
-	public static void Processing(int noOfStudents) throws Exception {
+	public static boolean Processing(int noOfStudents) throws Exception {
 
 		CounselStudents process = new CounselStudents(noOfStudents);
 		process.programProcessing();
@@ -137,10 +136,18 @@ public class CounselStudents implements StringQueue {
 				}
 			}
 			data.addRow(row);
+
 		}
-		CounselStudents.createExcelFile("allocatedCandidates.xlsx", data);
-		studentFileInput.close();
-		workbook1.close();
+
+		try {
+			CounselStudents.createExcelFile("allocatedCandidates.xlsx", data);
+			studentFileInput.close();
+			workbook1.close();
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 
 	}
 
