@@ -6,40 +6,38 @@ package queue;
  * @created-on 08-03-2021
  * @author krishna.meghwal_meta
  * */
-public class CustomQueue implements Queue {
-	int[] queue;
-	int size = 0;
-	int capacity;
-	int front = -1, rear = -1;
+public class CustomQueue<T> implements Queue<T> {
 
-	public CustomQueue(int size) {
-		capacity = size;
-		queue = new int[capacity];
+	@Override
+	public String toString() {
+		return "CustomQueue [queue=" + queue + ", size=" + size + ", front="
+				+ front + ", rear=" + rear + "]";
+	}
+
+	public CustomLinkedList<T> queue;
+	public int size = 0;
+	public CustomNode<T> front = null, rear = null;
+
+	public CustomQueue() {
+		queue = new CustomLinkedList<T>();
 
 	}
 
 	/**
 	 * Method to enqueue an element into queue
 	 * 
-	 * @param int
+	 * @param T
 	 * @return boolean
 	 */
 	@Override
-	public boolean enQueue(int x) {
-		if (isFull()) {
-			return false;
-		} else if (front == -1) {
-			front = 0;
-			rear = 0;
-			queue[rear] = x;
-		} else if (rear == capacity - 1 && front != 0) {
-			rear = 0;
-			queue[rear] = x;
-		} else {
-			rear++;
-			queue[rear] = x;
+	public boolean enQueue(T x) {
+		CustomNode<T> node = new CustomNode<T>(x);
+		if (this.rear == null) {
+			this.front = this.rear = node;
 		}
 		size++;
+		this.rear.next = node;
+		this.rear = node;
 		return true;
 	}
 
@@ -47,30 +45,24 @@ public class CustomQueue implements Queue {
 	 * Method to dequeue an element from queue
 	 * 
 	 * 
-	 * @return int
+	 * @return T
 	 */
 	@Override
-	public int deQueue() {
-		int temp;
+	public T deQueue() {
 
-		if (isEmpty()) {
-			return -1;
-		}
+		if (this.front == null)
+			return null;
 
-		temp = queue[front];
-
-		if (front == rear) {
-			front = -1;
-			rear = -1;
-		}
-
-		else if (front == capacity - 1) {
-			front = 0;
-		} else {
-			front = front + 1;
-		}
-
-		return temp;
+		CustomNode<T> temp = this.front;
+		this.front = this.front.next;
+		
+		if (this.front == null)
+			this.rear = null;
+		size--;
+		if(temp != null)
+			return temp.value;
+		else 
+			return null;
 	}
 
 	/**
@@ -81,21 +73,7 @@ public class CustomQueue implements Queue {
 	 */
 	@Override
 	public boolean isEmpty() {
-		if (front == -1) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Method to check if queue is full
-	 * 
-	 * 
-	 * @return boolean
-	 */
-	@Override
-	public boolean isFull() {
-		if (rear == front - 1 || rear == capacity - 1 && front == 0) {
+		if (front == null) {
 			return true;
 		}
 		return false;

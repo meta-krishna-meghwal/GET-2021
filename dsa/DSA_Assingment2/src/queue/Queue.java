@@ -6,14 +6,12 @@ package queue;
  * @created-on 08-03-2021
  * @author krishna.meghwal_meta
  * */
-public interface Queue {
+public interface Queue<T> {
 
-	boolean enQueue(int x);
+	boolean enQueue(T x);
 
-	int deQueue();
+	T deQueue();
 
 	boolean isEmpty();
-
-	boolean isFull();
 
 }

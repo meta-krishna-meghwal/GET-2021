@@ -47,7 +47,7 @@ public class CounselStudentsTest {
 	}
 
 	@Test
-	public void FileCreationTest() throws Exception {
+	public void FileCreationPositiveTest() throws Exception {
 		assertTrue(CounselStudents.Processing(300));
 	}
 
