@@ -1,7 +1,7 @@
 package queue;
 
 public class CustomLinkedList<T> implements LinkedList<T> {
-	CustomNode<T> head = null;
+	public CustomNode<T> head = null;
 	CustomNode<T> tail = null;
 	public int size = 0;
 
@@ -32,7 +32,7 @@ public class CustomLinkedList<T> implements LinkedList<T> {
 		CustomNode<T> curNode = this.head;
 		String answer = "";
 		while (curNode != null) {
-			answer += String.valueOf(curNode.value);
+			answer += curNode.value.toString();
 			if (curNode.next != null)
 				answer += " -> ";
 			curNode = curNode.next;
